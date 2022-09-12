@@ -1,0 +1,3 @@
+[submodule "src/Mowgli-ros-calibration_imu"]
+	path = src/Mowgli-ros-calibration_imu
+	url = https://github.com/cloudn1ne/Mowgli-ros-calibration_imu
