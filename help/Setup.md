@@ -1,4 +1,8 @@
 
+### This procedure assumes that you have a working ROS Noetic installation on an Ubuntu 20.04 box 
+
+If you dont have one yet, check the [first chapter of MowgliRover's setup instructions](https://github.com/cloudn1ne/MowgliRover/blob/main/help/InstallMowgli.md)
+
 ### Add the MowgliBase Workspace setup.bash to your .bashrc
 
 ```
