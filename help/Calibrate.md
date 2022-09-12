@@ -9,6 +9,7 @@ From a X11 session run
 * Provide your True Field Strength (in nano Tesla !)
 
   Visit [https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml](https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml#igrfwmm)
+  
   Select "Magnetic Field" and provide your GPS coords. From the resulting popup chose the Total Field in nT      
 
 * Click "Start" to record samples from Mowglis Magentometer 
@@ -43,10 +44,11 @@ You should see output simliar as below.
 
 Upon start this script will zero any offsets reported by MAG, ODOM or IMU.
 
-So it is mostly meant to check if turn XXdeg to see if MAG, ODOM, IMU properl follows.
+So it is mostly meant to check if turning <XX>degrees will be followed in MAG, ODOM and IMU topics.
 
-Signs might be differnt due to the offset cancelation. 
+Signs might be differnet due to the offset cancelation. 
 
+```
 MAG captured
 ODOM captured
 IMU captured
@@ -67,3 +69,4 @@ MAG (/imu/mag): 0.157 	ODOM (/odom): -0.568 	IMU (/imu/data): -0.568
 MAG (/imu/mag): -0.637 	ODOM (/odom): 0.135 	IMU (/imu/data): 0.135
 MAG (/imu/mag): 0.588 	ODOM (/odom): -0.546 	IMU (/imu/data): -0.546
 MAG (/imu/mag): 0.126 	ODOM (/odom): 0.175 	IMU (/imu/data): 0.175
+```
