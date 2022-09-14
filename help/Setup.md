@@ -3,6 +3,15 @@
 
 If you dont have one yet, check the [first chapter of MowgliRover's setup instructions](https://github.com/cloudn1ne/MowgliRover/blob/main/help/InstallMowgli.md)
 
+### Clone Repo
+
+```
+cd ~
+git clone git@github.com:cloudn1ne/MowgliBase.git
+cd ~/MowgliBase
+catkin_make
+```
+
 ### Add the MowgliBase Workspace setup.bash to your .bashrc
 
 ```
