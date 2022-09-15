@@ -10,8 +10,6 @@ cd ~
 git clone git@github.com:cloudn1ne/MowgliBase.git
 cd ~/MowgliBase
 git submodule update --init --recursive
-catkin_make --only-pkg-with-deps open_mower_ros mower_msgs
-catkin_make --only-pkg-with-deps open_mower_ros mowgli
 ```
 
 ### Add the MowgliBase Workspace setup.bash to your .bashrc
