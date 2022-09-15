@@ -1,7 +1,11 @@
 
 ### This procedure assumes that you have a working ROS Noetic installation on an Ubuntu 20.04 box 
 
-If you dont have one yet, check the [first chapter of MowgliRover's setup instructions](https://github.com/cloudn1ne/MowgliRover/blob/main/help/InstallMowgli.md)
+If you dont have one yet, check the [first chapter of MowgliRover's setup instructions](https://github.com/cloudn1ne/MowgliRover/blob/main/help/InstallMowgli.md) up to at least step 1.5
+
+```
+sudo apt-get -y install g++ cpp cmake ros-noetic-tf2-eigen ros-noetic-teleop-twist-keyboard ros-noetic-robot-state-publisher ros-noetic-joint-state-publisher ros-noetic-map-server ros-noetic-rosserial-server ros-noetic-gps-common picocom  ros-noetic-tf2-geometry-msgs ros-noetic-robot-localization libpigpiod-if-dev wavemon ros-noetic-rosserial-arduino python3-paho-mqtt openocd python3-rosdep
+```
 
 ### Clone Repo
 
@@ -9,8 +13,9 @@ If you dont have one yet, check the [first chapter of MowgliRover's setup instru
 cd ~
 git clone git@github.com:cloudn1ne/MowgliBase.git
 cd ~/MowgliBase
+source /opt/ros/noetic/setup.bash
 catkin_make
-git submodule update --init --recursive
+git submodule update --init
 ```
 (subrepos: mowgli, and open_mower_ros are needed due to dependencies via the ROS msgs types)
 
