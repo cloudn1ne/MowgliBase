@@ -4,3 +4,9 @@
 [submodule "src/ros-sensor_msgs_ext"]
 	path = src/ros-sensor_msgs_ext
 	url = https://github.com/pcdangio/ros-sensor_msgs_ext
+[submodule "src/MowgliRover"]
+	path = src/MowgliRover
+	url = https://github.com/cloudn1ne/MowgliRover
+[submodule "src/open_mower_ros"]
+	path = src/open_mower_ros
+	url = https://github.com/ClemensElflein/open_mower_ros
