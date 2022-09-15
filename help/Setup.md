@@ -13,7 +13,7 @@ sudo apt-get -y install g++ cpp cmake ros-noetic-tf2-eigen ros-noetic-teleop-twi
 
 ```
 cd ~
-git clone git@github.com:cloudn1ne/MowgliBase.git
+git clone https://github.com/cloudn1ne/MowgliBase.git
 cd ~/MowgliBase
 source /opt/ros/noetic/setup.bash
 catkin_make
