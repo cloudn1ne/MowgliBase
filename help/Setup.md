@@ -9,6 +9,7 @@ If you dont have one yet, check the [first chapter of MowgliRover's setup instru
 cd ~
 git clone git@github.com:cloudn1ne/MowgliBase.git
 cd ~/MowgliBase
+git submodule update --init --recursive
 catkin_make
 ```
 
@@ -17,13 +18,6 @@ catkin_make
 ```
 echo "source ~/MowgliBase/devel/setup.bash " >> ~/.bashrc
 . ~/.bashrc
-```
-
-
-### ROS requirements
-
-```
-sudo apt-get install -y ros-noetic-sensor-msgs-ext
 ```
 
 ### Qt requirements (for the IMU GUI)
