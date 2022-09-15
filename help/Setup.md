@@ -9,8 +9,10 @@ If you dont have one yet, check the [first chapter of MowgliRover's setup instru
 cd ~
 git clone git@github.com:cloudn1ne/MowgliBase.git
 cd ~/MowgliBase
+catkin_make
 git submodule update --init --recursive
 ```
+(subrepos: mowgli, and open_mower_ros are needed due to dependencies via the ROS msgs types)
 
 ### Add the MowgliBase Workspace setup.bash to your .bashrc
 
