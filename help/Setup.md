@@ -10,7 +10,6 @@ cd ~
 git clone git@github.com:cloudn1ne/MowgliBase.git
 cd ~/MowgliBase
 git submodule update --init --recursive
-catkin_make
 ```
 
 ### Add the MowgliBase Workspace setup.bash to your .bashrc
@@ -23,7 +22,7 @@ echo "source ~/MowgliBase/devel/setup.bash " >> ~/.bashrc
 ### Qt requirements (for the IMU GUI)
 
 ```
-sudo apt-get install -y build-essential qtcreator qt5-default libqt5datavisualization5-dev libqt5charts5-dev
+sudo apt-get install -y build-essential qtcreator qt5-default libqt5datavisualization5-dev libqt5charts5-dev ros-noetic-robot-localization
 ```
 
 ### Compile imu_calibration
