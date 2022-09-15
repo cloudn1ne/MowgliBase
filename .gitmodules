@@ -1,3 +1,6 @@
 [submodule "src/Mowgli-ros-calibration_imu"]
 	path = src/Mowgli-ros-calibration_imu
 	url = https://github.com/cloudn1ne/Mowgli-ros-calibration_imu
+[submodule "src/ros-sensor_msgs_ext"]
+	path = src/ros-sensor_msgs_ext
+	url = https://github.com/pcdangio/ros-sensor_msgs_ext
