@@ -25,6 +25,17 @@ git submodule update --init
 
 ```
 echo "source ~/MowgliBase/devel/setup.bash " >> ~/.bashrc
+```
+
+### Setup ROS_MASTER to where your Raspi is running roscore
+
+```
+echo "ROS_MASTER_URI=http://<raspi-ip>:11311/ " >> ~/.bashrc
+```
+
+### Source changes (or relogin)
+
+```
 . ~/.bashrc
 ```
 
