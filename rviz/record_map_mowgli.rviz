@@ -6,15 +6,10 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Odometry1
         - /Odometry1/Shape1
-        - /Odometry2
-        - /Odometry2/Status1
-        - /Odometry2/Covariance1
-        - /Odometry2/Covariance1/Position1
+        - /DR Odometry1/Covariance1
+        - /DR Odometry1/Covariance1/Position1
         - /MarkerArray1/Status1
-        - /MarkerArray2
-        - /MarkerArray3
       Splitter Ratio: 0.41701245307922363
     Tree Height: 415
   - Class: rviz/Selection
@@ -113,9 +108,9 @@ Visualization Manager:
           Scale: 1
           Value: true
         Value: true
-      Enabled: true
+      Enabled: false
       Keep: 500
-      Name: Odometry
+      Name: DR Odometry
       Position Tolerance: 0.10000000149011612
       Queue Size: 10
       Shape:
@@ -130,7 +125,7 @@ Visualization Manager:
         Value: Arrow
       Topic: /odometry/filtered
       Unreliable: false
-      Value: true
+      Value: false
     - Class: rviz/TF
       Enabled: false
       Frame Timeout: 15
@@ -362,7 +357,7 @@ Visualization Manager:
       Marker Topic: /slic3r_coverage_planner/path_marker_array
       Name: MarkerArray
       Namespaces:
-        {}
+        mower_map_service_lines: true
       Queue Size: 100
       Value: true
     - Alpha: 1
@@ -373,7 +368,7 @@ Visualization Manager:
       Enabled: true
       Head Length: 0.30000001192092896
       Head Radius: 0.10000000149011612
-      Name: Pose
+      Name: Target Pose
       Queue Size: 10
       Shaft Length: 1
       Shaft Radius: 0.05000000074505806
@@ -418,10 +413,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 89.66661834716797
+      Scale: 45.06022644042969
       Target Frame: <Fixed Frame>
-      X: -2.9687461853027344
-      Y: -3.004093647003174
+      X: -6.089852333068848
+      Y: -5.4545817375183105
     Saved: ~
 Window Geometry:
   Displays:
