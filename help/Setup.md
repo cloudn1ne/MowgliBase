@@ -45,6 +45,15 @@ echo "ROS_MASTER_URI=http://<raspi-ip>:11311/ " >> ~/.bashrc
 sudo apt-get install -y build-essential qtcreator qt5-default libqt5datavisualization5-dev libqt5charts5-dev ros-noetic-robot-localization ros-noetic-ublox
 ```
 
+### MowgliRover Testing Branch
+If you need to build against the testing branch of MowgliRover then you will need to checkout the testing branch.
+Default is only the main branch.
+
+```
+cd ~/MowgliBase/src/MowgliRover
+git checkout testing
+```
+
 ### Compile imu_calibration
 
 ```
