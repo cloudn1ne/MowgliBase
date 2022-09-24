@@ -2,6 +2,8 @@
 
 Is a data collector that taps into existing topics like /odom or /ublox/navpt to gather information "at" the bots current location and feed that into a GridMap
 
+![RVIZ Screenshot](./images/mowgli_rviz.png)
+
 ## Get started 
 
 As mowgli_rviz does not know the mowing area, you need to supply it the map.bag file from ~/.ros/map.bag on your Bot at least once. 
