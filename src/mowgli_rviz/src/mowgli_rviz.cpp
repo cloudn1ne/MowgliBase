@@ -400,7 +400,7 @@ void publishMap(ros::Publisher publisher, ros::NodeHandle nh) {
  */
 void GPSFixQualityCB(const ublox_msgs::NavPVT::ConstPtr &msg) 
 {        
-#ifndef OPENMOWER_ONLY_DEBUG        
+#ifdef MOWGLI_DEBUG
     ROS_INFO_STREAM("mowgli_rviz: GPSFixQualityCB");  
 #endif    
     unsigned int gps_quality_flags = msg->flags;    
@@ -423,7 +423,7 @@ void GPSFixQualityCB(const ublox_msgs::NavPVT::ConstPtr &msg)
  */
 void OdomCB(const nav_msgs::Odometry::ConstPtr &msg)
 {
-#ifndef OPENMOWER_ONLY_DEBUG    
+#ifdef MOWGLI_DEBUG
     ROS_INFO_STREAM("mowgli_rviz: MowgliOdomCB");
 #endif
     bot_x = msg->pose.pose.position.x;
@@ -440,7 +440,7 @@ void OdomCB(const nav_msgs::Odometry::ConstPtr &msg)
   */
  void MowgliStatusCB(const mowgli::status::ConstPtr &msg) 
  {
- #ifndef OPENMOWER_ONLY_DEBUG    
+ #ifdef MOWGLI_DEBUG
     ROS_INFO_STREAM("mowgli_rviz: MowgliStatusCB");
  #endif    
     status_wheelpower_sum = msg->left_power + msg->right_power;
@@ -451,7 +451,7 @@ void OdomCB(const nav_msgs::Odometry::ConstPtr &msg)
 * IMU data (Madgwick filtered) - get orientation, and yaw
 */
 void IMUDataCB(const sensor_msgs::Imu::ConstPtr &msg) {
-#ifndef OPENMOWER_ONLY_DEBUG    
+#ifdef MOWGLI_DEBUG    
     ROS_INFO_STREAM("mowgli_rviz: IMUDataCB");
 #endif    
 

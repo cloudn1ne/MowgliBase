@@ -1,3 +1,10 @@
+<!--
+
+ Mowgli_rviz generates the /grid_map topic enhanced with data,
+ which gets then visualized via grid_map_visualisation. A custom .riv file is launched
+
+-->
+
 <launch>
   <!-- Launch the mowgli visualization node -->
   <node pkg="mowgli_rviz" type="mowgli_rviz" name="mowgli_rviz" output="screen">
@@ -9,6 +16,7 @@
   <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
     <rosparam command="load" file="$(find mowgli_rviz)/config/mowgli.yaml" />
   </node>
+
 
   <!-- Launch RViz with the demo configuration -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mowgli_rviz)/rviz/mowgli_rviz.rviz" />

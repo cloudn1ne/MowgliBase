@@ -1,0 +1,58 @@
+#
+# Filters that are applied to /grid_map to form /filtered_grid_map
+#
+
+grid_map_filters:
+## BUMPINESS
+  - name: remove gravity
+    type: gridMapFilters/MathExpressionFilter
+    params:
+      output_layer: accel_z_no_gravity
+      expression: (accel_z-9.81)
+  - name: mean_accel_z
+    type: gridMapFilters/MeanInRadiusFilter
+    params:
+      input_layer: accel_z_no_gravity
+      output_layer: accel_z_mean
+      radius: 0.5 
+  - name: normalize
+    type: gridMapFilters/MathExpressionFilter
+    params:
+      output_layer: accel_z_filtered
+      expression: (accel_z_mean/5)
+
+## GPS XY
+  - name: mean_gps_xy_acc
+    type: gridMapFilters/MeanInRadiusFilter
+    params:
+      input_layer: gps_xy_acc
+      output_layer: gps_xy_acc_mean
+      radius: 0.5  
+  - name: adjust_gps_xy_acc
+    type: gridMapFilters/MathExpressionFilter
+    params:
+      output_layer: gps_xy_acc_filtered
+      expression: (gps_xy_acc_mean / 15)
+
+## GPS FIX TYPE
+  - name: mean_gps_rtk_fix_type_filtered
+    type: gridMapFilters/MeanInRadiusFilter
+    params:
+      input_layer: gps_rtk_fix_type
+      output_layer: gps_rtk_fix_type_mean
+      radius: 0.5
+  - name: adjust_gps_rtk_fix_type
+    type: gridMapFilters/MathExpressionFilter
+    params:
+      output_layer: gps_rtk_fix_type_filtered 
+      expression: (gps_rtk_fix_type_mean * 1.5)
+
+## WHEEL POWER
+  - name: wheelpower_sum_filtered
+    type: gridMapFilters/MeanInRadiusFilter
+    params:
+      input_layer: wheelpower_sum
+      output_layer: wheelpower_sum_filtered 
+      radius: 0.5
+
+

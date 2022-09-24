@@ -1,0 +1,31 @@
+<!--
+
+ THIS IS THE FILTERED VERSION OF mowgli_rviz   
+
+ It uses the grid_maps_demos to transform /grid_map (produced by mowgli_rviz) into /filtered_grid_map.
+ Which gets then visualized via grid_map_visualisation. A custom .riv file is launched
+
+-->
+
+<launch>
+  <!-- Launch the mowgli visualization node -->
+  <node pkg="mowgli_rviz" type="mowgli_rviz" name="mowgli_rviz" output="screen">
+    <param name="openmower_map_path" value="map.bag" />    
+    <param name="mowgli_map_path" value="mowgli_map.bag" />  
+  </node>
+
+  <node pkg="grid_map_demos" type="filters_demo" name="grid_map_filter_demo" output="screen">
+    <param name="input_topic" value="/grid_map" />
+    <param name="output_topic" value="/filtered_grid_map" />
+    <rosparam command="load" file="$(find mowgli_rviz)/config/filtered/filters.yaml" />
+  </node>
+
+  <!-- Launch the grid map visualizer -->
+  <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
+    <rosparam command="load" file="$(find mowgli_rviz)/config/filtered/mowgli.yaml" />
+  </node>
+
+
+  <!-- Launch RViz with the demo configuration -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mowgli_rviz)/rviz/mowgli_rviz_filtered.rviz" />
+</launch>
