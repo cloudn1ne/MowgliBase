@@ -4,6 +4,23 @@ Is a data collector that taps into existing topics like /odom or /ublox/navpt to
 
 ![RVIZ Screenshot](./images/mowgli_rviz.png)
 
+## Compiling
+
+There are two versions one for stock OM (as of Sept 2022) and one for Mowgli. 
+The difference is that the Mowgli version supports topics and data exports that Mowgli provides which OM at the moment does not (feel free to submit pull reqs for the OM version)
+
+For Mowgli:
+
+```
+~/MowgliBase/scripts/build_mowgli_rviz.sh
+```
+
+For OpenMower
+
+```
+~/MowgliBase/scripts/build_om_rviz.sh
+```
+
 ## Get started 
 
 As mowgli_rviz does not know the mowing area, you need to supply it the map.bag file from ~/.ros/map.bag on your Bot at least once. 
