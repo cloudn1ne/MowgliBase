@@ -53,6 +53,20 @@ If you want to reset your collected data you need to delete ~/.ros/mowgli_map.ba
 
    *Higher (worse) datapoints overwrite lower (good) datapoints, so you'll get a map of where GPS is worst*
 
+### Layer: accel_z
+
+   \<value\> = /imu/data/acceleration/z - Earth Accleration (9.81m/s^2 ...) 
+
+   *Higher (worse) datapoints overwrite lower (good) datapoints, so you'll get a map of where acceleration is worst*
+
+### Layer: wheelpower_sum
+   
+   * Seems to be the "set power" of the BLDC motors not the actual consumption ...*
+
+   \<value\> = /mowgli/status/left_power + right_power
+   
+   *Higher (worse) datapoints overwrite lower (good) datapoints*
+   
 ## Configuration
 
    GridMap is configured in **~/MowgliBase/src/mowgli_rviz/config/mowgli.yaml**
