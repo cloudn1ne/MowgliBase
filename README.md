@@ -9,6 +9,10 @@ If your build deviates (different IMU, IMU connected to Raspi, etc ..) you will 
 
 To get started follow the instructions in [here](help/Setup.md)
 
+## Updates:
+
+* 24/09/22 - v1.0.0 - added mowgli_rviz inital version
+
 ## TODO:
 
 * add some pics for the magentometer calibration procedure
