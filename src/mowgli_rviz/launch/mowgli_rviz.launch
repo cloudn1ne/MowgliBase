@@ -1,0 +1,15 @@
+<launch>
+  <!-- Launch the mowgli visualization node -->
+  <node pkg="mowgli_rviz" type="mowgli_rviz" name="mowgli_rviz" output="screen">
+    <param name="openmower_map_path" value="map.bag" />    
+    <param name="mowgli_map_path" value="mowgli_map.bag" />  
+  </node>
+
+  <!-- Launch the grid map visualizer -->
+  <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
+    <rosparam command="load" file="$(find mowgli_rviz)/config/mowgli.yaml" />
+  </node>
+
+  <!-- Launch RViz with the demo configuration -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mowgli_rviz)/rviz/mowgli_rviz.rviz" />
+</launch>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>mowgli_rviz</name>
+  <version>0.0.1</version>
+  <description>Mowgli RVIZ data provider</description>
+  <maintainer email="cn@warp.at">CyberNet</maintainer>
+  <license>BSD</license>
+  <url type="website">http://github.com/cloudn1ne/mowgli</url> -->
+  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+  <buildtool_depend>catkin</buildtool_depend>
+<!--  <build_depend>mowgli</build_depend> -->
+  <build_depend>grid_map_core</build_depend>
+  <build_depend>grid_map_ros</build_depend>
+  <build_depend>grid_map_filters</build_depend>
+  <build_depend>grid_map_cv</build_depend>
+  <build_depend>mower_map</build_depend>
+  <build_depend>ublox_gps</build_depend>
+
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>message_generation</build_export_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>grid_map_core</build_export_depend>
+  <build_export_depend>grid_map_ros</build_export_depend>
+  <build_export_depend>grid_map_filters</build_export_depend>
+  <build_export_depend>grid_map_cv</build_export_depend>
+
+  <exec_depend>roscpp</exec_depend>
+  <export>
+  </export>
+</package>
+

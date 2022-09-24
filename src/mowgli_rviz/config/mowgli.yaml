@@ -1,0 +1,16 @@
+grid_map_topic: /grid_map
+grid_map_visualizations:
+  - name: gps_rtk_fix_type 
+    type: point_cloud
+    params:
+     layer: gps_rtk_fix_type 
+  - name: gps_xy_acc 
+    type: point_cloud 
+    params:
+     layer: gps_xy_acc
+  - name: mowing_area
+    type: occupancy_grid
+    params:
+     layer: mowing_area
+     data_min: -0.2
+     data_max: 1
