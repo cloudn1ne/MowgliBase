@@ -1,12 +1,24 @@
 /*
- * Mowgli RVIZ Interface V1.0
+ * Mowgli RVIZ Interface V1.1
  * (c) Georg Swoboda <cn@warp.at> 2022
  *
  * https://github.com/cloudn1ne/MowgliRover
  *
  * v1.0: inital release
- *
+ * v1.1: added mowgli only topics (-DOPENMOWER_ONLY=1 only needed if you want OM only topics !)
+ * 
  */
+
+// Support OM only topics
+//#define OPENMOWER_ONLY 1
+
+#ifdef OPENMOWER_ONLY
+ #warning ( "=============================================" )
+ #warning ( "= Building OpenMower version of mowgli_rviz =" )
+ #warning ( "= Available layers will be restricted !     =" ) 
+ #warning ( "=============================================" )
+ #warning ( "" )
+#endif
 
 #include <ros/ros.h>
 #include <signal.h>
@@ -30,6 +42,14 @@
 #include <nav_msgs/Odometry.h>
 #include <ublox_msgs/NavPVT.h>
 
+/* IMU */
+#include <sensor_msgs/Imu.h>
+
+/* Status */
+#ifndef OPENMOWER_ONLY
+ #include <mowgli/status.h>
+#endif
+
 
 // #define MOWGLI_DEBUG 1
 
@@ -50,7 +70,10 @@ std::string openmower_map_path = "map.bag";
 // Subscribers
 ros::Subscriber subGPSQuality;          // /ublox/navpvt (GPS FIX Quality)
 ros::Subscriber subOdom;		// /odom
-
+ros::Subscriber subIMU;			// /imu/data
+#ifndef OPENMOWER_ONLY
+ ros::Subscriber subStatus;		// /mowgli/status
+#endif
 // GPS Quality flags
 bool   gpsOdometryIsRTK = false;
 double gpsXYAcc = 0.0;
@@ -58,6 +81,14 @@ double gpsXYAcc = 0.0;
 // Robot position
 double bot_x = 0.0;
 double bot_y = 0.0;
+
+// Z acceleration
+double accel_z = 0.0;
+
+#ifndef OPENMOWER_ONLY
+  // Wheel power sum
+  double status_wheelpower_sum = 0.0;
+#endif
 
 // true once we receive the first bot location via /odom
 bool inital_odom_received = false;
@@ -219,6 +250,10 @@ void buildMap(ros::Publisher publisher, ros::NodeHandle nh) {
     //GridMap map({"mowing_area"});
     map.add("gps_rtk_fix_type");
     map.add("gps_xy_acc");
+#ifndef OPENMOWER_ONLY
+    map.add("wheelpower_sum");
+#endif
+    map.add("accel_z");
     map.setFrameId("map");
 
     // calculate center of map
@@ -311,6 +346,36 @@ void publishMap(ros::Publisher publisher, ros::NodeHandle nh) {
         {
            map.at("gps_xy_acc", i) = std::max(new_point_val, old_point_val); // only record the worst
         }
+        //////////////////////////////////////////////////////
+        // ACCELERATION Z (Bumpiness)
+        //////////////////////////////////////////////////////
+        old_point_val = map.at("accel_z", i);
+        new_point_val = accel_z; 
+//      ROS_INFO("new_point_val: %f old_point_val: %f", new_point_val, old_point_val);
+        if ( isnan(old_point_val) )
+        {
+           map.at("accel_z", i) = new_point_val;
+        }
+        else
+        {
+           map.at("accel_z", i) = std::max(new_point_val, old_point_val); // only record the worst
+        }
+#ifndef OPENMOWER_ONLY
+ 	//////////////////////////////////////////////////////
+        // WHEELPOWER SUM
+        //////////////////////////////////////////////////////
+        old_point_val = map.at("wheelpower_sum", i);
+        new_point_val = status_wheelpower_sum;
+//      ROS_INFO("new_point_val: %f old_point_val: %f", new_point_val, old_point_val);
+        if ( isnan(old_point_val) )
+        {
+           map.at("wheelpower_sum", i) = new_point_val;
+        }
+        else
+        {
+           map.at("wheelpower_sum", i) = std::max(new_point_val, old_point_val); // only record the worst
+        }
+#endif // MOWGLI
       }
       else
       {
@@ -335,7 +400,7 @@ void publishMap(ros::Publisher publisher, ros::NodeHandle nh) {
  */
 void GPSFixQualityCB(const ublox_msgs::NavPVT::ConstPtr &msg) 
 {        
-#ifdef MOWGLI_DEBUG        
+#ifndef OPENMOWER_ONLY_DEBUG        
     ROS_INFO_STREAM("mowgli_rviz: GPSFixQualityCB");  
 #endif    
     unsigned int gps_quality_flags = msg->flags;    
@@ -358,7 +423,7 @@ void GPSFixQualityCB(const ublox_msgs::NavPVT::ConstPtr &msg)
  */
 void OdomCB(const nav_msgs::Odometry::ConstPtr &msg)
 {
-#ifdef MOWGLI_DEBUG    
+#ifndef OPENMOWER_ONLY_DEBUG    
     ROS_INFO_STREAM("mowgli_rviz: MowgliOdomCB");
 #endif
     bot_x = msg->pose.pose.position.x;
@@ -367,6 +432,31 @@ void OdomCB(const nav_msgs::Odometry::ConstPtr &msg)
     inital_odom_received = true;
 }
 
+
+#ifndef OPENMOWER_ONLY
+ /**
+  * Mowgli data
+  * 
+  */
+ void MowgliStatusCB(const mowgli::status::ConstPtr &msg) 
+ {
+ #ifndef OPENMOWER_ONLY_DEBUG    
+    ROS_INFO_STREAM("mowgli_rviz: MowgliStatusCB");
+ #endif    
+    status_wheelpower_sum = msg->left_power + msg->right_power;
+ }
+#endif
+
+/*
+* IMU data (Madgwick filtered) - get orientation, and yaw
+*/
+void IMUDataCB(const sensor_msgs::Imu::ConstPtr &msg) {
+#ifndef OPENMOWER_ONLY_DEBUG    
+    ROS_INFO_STREAM("mowgli_rviz: IMUDataCB");
+#endif    
+
+    accel_z = msg->linear_acceleration.z;
+}
 
 
 int main(int argc, char** argv)
@@ -379,6 +469,10 @@ int main(int argc, char** argv)
 
   subGPSQuality = nh.subscribe("ublox/navpvt", 100, GPSFixQualityCB);
   subOdom = nh.subscribe("odom", 50, OdomCB);
+  subIMU = nh.subscribe("imu/data", 50, IMUDataCB);
+#ifndef OPENMOWER_ONLY
+  subStatus = nh.subscribe("mowgli/status", 50, MowgliStatusCB);
+#endif
 
   ros::AsyncSpinner asyncSpinner(1);
   asyncSpinner.start();

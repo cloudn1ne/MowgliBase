@@ -8,6 +8,14 @@ grid_map_visualizations:
     type: point_cloud 
     params:
      layer: gps_xy_acc
+  - name: accel_z 
+    type: point_cloud
+    params:
+     layer: accel_z 
+  - name: wheelpower_sum
+    type: point_cloud
+    params:
+     layer: wheelpower_sum 
   - name: mowing_area
     type: occupancy_grid
     params:

@@ -14,6 +14,7 @@ find_package(catkin REQUIRED
     grid_map_ros
     mower_map
     nav_msgs
+    sensor_msgs
     ublox_gps
 #  tf2_geometry_msgs
 #  grid_map_cv
@@ -23,6 +24,15 @@ find_package(catkin REQUIRED
 #  grid_map_octomap
 #    COMPONENTS message_generation std_msgs sensor_msgs
 )
+
+# if we not compiling this for openmower alone we need the mowgli pkg 
+if (!OPENMOWER_ONLY)
+ find_package(catkin REQUIRED
+	mowgli
+ ) 
+else()
+ add_definitions(-DOPENMOWER_ONLY=1)
+endif(!OPENMOWER_ONLY)
 
 catkin_package(
         INCLUDE_DIRS include
