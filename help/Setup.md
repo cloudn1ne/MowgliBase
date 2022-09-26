@@ -15,8 +15,8 @@ sudo apt-get -y install g++ cpp cmake ros-noetic-tf2-eigen ros-noetic-teleop-twi
 cd ~
 git clone https://github.com/cloudn1ne/MowgliBase.git
 cd ~/MowgliBase
-catkin_make
 source /opt/ros/noetic/setup.bash
+catkin_make
 git submodule update --init
 ```
 (subrepos: mowgli, and open_mower_ros are needed due to dependencies via the ROS msgs types)
