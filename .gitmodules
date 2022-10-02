@@ -10,3 +10,6 @@
 [submodule "src/open_mower_ros"]
 	path = src/open_mower_ros
 	url = https://github.com/ClemensElflein/open_mower_ros
+[submodule "src/Groot"]
+	path = src/Groot
+	url = https://github.com/BehaviorTree/Groot
