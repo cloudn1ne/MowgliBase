@@ -35,7 +35,7 @@ else()
 endif(!OPENMOWER_ONLY)
 
 catkin_package(
-        INCLUDE_DIRS include
+        #  INCLUDE_DIRS include
         #  LIBRARIES mowgli_rviz
         #  CATKIN_DEPENDS other_catkin_pkg
         #  DEPENDS system_lib
