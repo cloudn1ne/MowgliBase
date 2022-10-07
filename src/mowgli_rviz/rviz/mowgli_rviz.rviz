@@ -6,8 +6,6 @@ Panels:
       Expanded:
         - /Odom Dead Reckoning1/Shape1
         - /Odom GPS1/Shape1
-        - /GPS XY Accuracy2
-        - /GPS XY Accuracy2/Autocompute Value Bounds1
       Splitter Ratio: 0.6112469434738159
     Tree Height: 939
   - Class: rviz/Selection
@@ -28,7 +26,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: Bumpiness (z_accel)
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -318,34 +316,6 @@ Visualization Manager:
       Shaft Length: 0.10000000149011612
       Topic: /move_base_flex/DockingFTCPlanner/global_plan
       Unreliable: false
-      Value: true
-    - Alpha: 0.5
-      Autocompute Intensity Bounds: true
-      Autocompute Value Bounds:
-        Max Value: 0.08491750061511993
-        Min Value: -0.16515299677848816
-        Value: false
-      Axis: Z
-      Channel Name: z
-      Class: rviz/PointCloud2
-      Color: 255; 255; 255
-      Color Transformer: Intensity
-      Decay Time: 0
-      Enabled: true
-      Invert Rainbow: true
-      Max Color: 255; 0; 0
-      Min Color: 0; 255; 0
-      Name: GPS XY Accuracy
-      Position Transformer: XYZ
-      Queue Size: 10
-      Selectable: false
-      Size (Pixels): 3
-      Size (m): 0.14000000059604645
-      Style: Boxes
-      Topic: /grid_map_visualization/gps_xy_acc
-      Unreliable: false
-      Use Fixed Frame: true
-      Use rainbow: false
       Value: true
   Enabled: true
   Global Options:
